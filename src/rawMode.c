@@ -5,12 +5,16 @@
 
 #include "includes.h"
 
-//global variable to control the state of the users terminal
-struct termios orig_termios;
+editorConfiguration editorConf;
+
+void initEditor() {
+	if (getWindowsSize(&editorConf.screenRows, &editorConf.screenCols) == -1)
+		die("getWindowsSize");
+}
 
 void disableRawMode() {
 	//load users original terminal atributes
-	if (tcsetattr(STDIN_FILENO, TCSAFLUSH, &orig_termios) == -1)
+	if (tcsetattr(STDIN_FILENO, TCSAFLUSH, &editorConf.orig_termios) == -1)
 		die("tcsetattr");
 }
 
@@ -18,12 +22,12 @@ void enableRawMode() {
 	struct termios raw;
 
 	//save users terminal atributes
-	if (tcgetattr(STDIN_FILENO, &orig_termios))
+	if (tcgetattr(STDIN_FILENO, &editorConf.orig_termios))
 		die("tcgetattr");
 	//calls the function when the program exits
 	atexit(disableRawMode);
 	
-	raw = orig_termios;
+	raw = editorConf.orig_termios;
 	//dissable some flags:
 	//	ECHO->prevent to echo what you write
 	//	ICANON->disable send input on enter, now input is sended with every key pressed

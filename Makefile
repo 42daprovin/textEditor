@@ -3,9 +3,10 @@ NAME = textEditor
 DIR_S = src
 DIR_O = objs
 
-SOURCES = main.c \
+SOURCES = mainKeyProcessing.c \
 					rawMode.c \
-					error.c
+					error.c \
+					screen.c
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 OBJS = $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
