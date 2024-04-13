@@ -6,7 +6,9 @@ DIR_O = objs
 SOURCES = mainKeyProcessing.c \
 					rawMode.c \
 					error.c \
-					screen.c
+					screen.c \
+					utils.c \
+					cursorActions.c
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 OBJS = $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))

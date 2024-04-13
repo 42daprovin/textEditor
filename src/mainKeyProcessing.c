@@ -29,7 +29,20 @@ void processKeyPressed()
 	//exit on ctrl-q
 	switch (keyCode) {
 		case CTRL_KEY('q'):
+			clearScreen();
 			exit(0);
+			break;
+		case DOWN_ARROW:
+			moveCursorDown();
+			break;
+		case UP_ARROW:
+			moveCursorUp();
+			break;
+		case RIGHT_ARROW:
+			moveCursorRight();
+			break;
+		case LEFT_ARROW:
+			moveCursorLeft();
 			break;
 	}
 }

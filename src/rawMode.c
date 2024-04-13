@@ -8,6 +8,8 @@
 editorConfiguration editorConf;
 
 void initEditor() {
+	editorConf.cX = 2;
+	editorConf.cY = 1;
 	if (getWindowsSize(&editorConf.screenRows, &editorConf.screenCols) == -1)
 		die("getWindowsSize");
 }
