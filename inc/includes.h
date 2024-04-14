@@ -4,10 +4,11 @@
 #include <termios.h>
 
 #define CTRL_KEY(k) ((k) & 0x1f)
-#define DOWN_ARROW 66
-#define UP_ARROW 65
-#define LEFT_ARROW 68
-#define RIGHT_ARROW 67
+
+#define DOWN_ARROW 1001
+#define UP_ARROW 1002
+#define LEFT_ARROW 1003
+#define RIGHT_ARROW 1004
 
 typedef struct	editorConf_s
 {

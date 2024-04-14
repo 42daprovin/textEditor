@@ -6,7 +6,7 @@
 
 #include "includes.h"
 
-char readKeyPressed()
+int readKeyPressed()
 {
 	int nread;
 	char c;
@@ -16,13 +16,38 @@ char readKeyPressed()
 			die("read");
 	}
 
+	//read esc seq
+	if (c == '\x1b') {
+		char seq[3];
+
+		if (read(STDIN_FILENO, &seq[0], 1) != 1)
+			return '\x1b';
+		if (read(STDIN_FILENO, &seq[1], 1) != 1)
+			return '\x1b';
+
+		if (seq[0] == '[') {
+			switch (seq[1]) {
+				case 'A':
+					return UP_ARROW;
+				case 'B':
+					return DOWN_ARROW;
+				case 'C':
+					return RIGHT_ARROW; 
+				case 'D':
+					return LEFT_ARROW;
+			}
+		}
+		
+		return '\x1b';
+	}
+
 	return c;
 }
 
 
 void processKeyPressed()
 {
-	char keyCode;
+	int keyCode;
 
 	keyCode = readKeyPressed();
 
