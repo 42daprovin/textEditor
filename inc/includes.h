@@ -25,8 +25,15 @@ typedef struct	aBuffer_s
 	int	len;
 }								aBuffer;
 
+typedef struct	dataBuffer_s
+{
+	char *text;
+}								dataBuffer;	
+
 //global variable with the editor configuration
 extern editorConfiguration editorConf;
+//global variable with the text data
+extern dataBuffer gData; 
 
 void enableRawMode();
 void die(const char *s);

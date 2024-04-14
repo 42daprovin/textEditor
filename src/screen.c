@@ -8,12 +8,18 @@
 
 void appendToBuffer(aBuffer *buff, char *s, int l)
 {
-	//realloc buffer
-	buff->data = (char*)realloc(buff->data, buff->len + l);	
+	char *tmp;
 
-	//malloc security
-	if (buff->data == NULL)
+	//realloc buffer
+	tmp = (char*)realloc(buff->data, buff->len + l);	
+
+	//realloc security
+	if (tmp != NULL)
+		buff->data = tmp;
+	else {
+		free(buff->data);
 		die("realloc");
+	}
 
 	//append to the buffer
 	memcpy(&(buff->data[buff->len]), s, l);

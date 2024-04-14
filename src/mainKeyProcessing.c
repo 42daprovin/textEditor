@@ -6,6 +6,9 @@
 
 #include "includes.h"
 
+//initialize global
+dataBuffer gData;
+
 int readKeyPressed()
 {
 	int nread;
@@ -51,7 +54,6 @@ void processKeyPressed()
 
 	keyCode = readKeyPressed();
 
-	//exit on ctrl-q
 	switch (keyCode) {
 		case CTRL_KEY('q'):
 			clearScreen();
@@ -69,11 +71,18 @@ void processKeyPressed()
 		case LEFT_ARROW:
 			moveCursorLeft();
 			break;
+		default:
+			//ToDo: move this to a function, only testing now
+			//check if is printable
+			
 	}
 }
 
 int main()
 {
+	//init gData
+	gData.text = NULL;
+
 	//enable raw mode
 	enableRawMode();
 	initEditor();
